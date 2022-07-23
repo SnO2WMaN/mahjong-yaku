@@ -1,0 +1,10 @@
+cradle:
+  cabal:
+    - path: "src"
+      component: "lib:mahjong-yaku"
+
+    - path: "test"
+      component: "mahjong-yaku:test:mahjong-yaku-test"
+
+    - path: "app/Main.hs"
+      component: "mahjong-yaku:exe:mahjong-yaku"

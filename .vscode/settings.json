@@ -3,6 +3,10 @@
   "editor.formatOnSave": true,
   "nixEnvSelector.nixFile": "${workspaceRoot}/shell.nix",
   "haskell.manageHLS": "PATH",
+  "files.exclude": {
+    ".direnv": true,
+    "dist-newstyle": true
+  },
   "customLocalFormatters.formatters": [
     {
       "command": "treefmt -q --stdin ${file}",
