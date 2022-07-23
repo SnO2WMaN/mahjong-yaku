@@ -1,21 +1,26 @@
-[formatter.haskell]
+[formatter.fourmolu]
 command = "fourmolu"
 options = [
-    "--ghc-opt",
-    "-XImportQualifiedPost",
-    "--ghc-opt",
-    "-XTypeApplications",
-    "--mode",
-    "inplace",
-    "--check-idempotence",
+  "--ghc-opt",
+  "-XImportQualifiedPost",
+  "--ghc-opt",
+  "-XTypeApplications",
+  "--mode",
+  "inplace",
+  "--check-idempotence",
 ]
 includes = ["*.hs"]
 
-[formatter.nix]
-command = "nixpkgs-fmt"
-includes = ["*.nix"]
-
-[formatter.cabal]
+[formatter.cabal-fmt]
 command = "cabal-fmt"
 options = ["--inplace"]
 includes = ["*.cabal"]
+
+[formatter.alejandra]
+command = "alejandra"
+includes = ["*.nix"]
+
+[formatter.dprint]
+command = "dprint"
+options = ["fmt"]
+includes = ["*.json", "*.toml", "*.md"]

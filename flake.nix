@@ -7,23 +7,38 @@
     haskell-flake.url = "github:srid/haskell-flake";
   };
 
-  outputs = { self, nixpkgs, flake-parts, haskell-flake, ... }:
-    flake-parts.lib.mkFlake { inherit self; } {
+  outputs = {
+    self,
+    nixpkgs,
+    flake-parts,
+    haskell-flake,
+    ...
+  }:
+    flake-parts.lib.mkFlake {inherit self;} {
       systems = nixpkgs.lib.systems.flakeExposed;
       imports = [
         haskell-flake.flakeModule
       ];
-      perSystem = { self', pkgs, ... }: {
+      perSystem = {
+        self',
+        pkgs,
+        ...
+      }: {
         haskellProjects.default = {
           root = ./.;
           buildTools = hp: {
             # TODO: Use https://github.com/numtide/treefmt/pull/169
-            inherit (pkgs)
+            inherit
+              (pkgs)
               treefmt
-              nixpkgs-fmt;
-            inherit (hp)
+              alejandra
+              dprint
+              ;
+            inherit
+              (hp)
               cabal-fmt
-              fourmolu;
+              fourmolu
+              ;
           };
         };
       };

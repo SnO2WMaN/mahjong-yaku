@@ -6,7 +6,7 @@ This repository is a Haskell project template that is optimized for a fully repr
 
 - [Nix](http://www.srid.ca/haskell-nix) + [Flakes](https://serokell.io/blog/practical-nix-flakes) (via [`github:srid/haskell-flake`](https://github.com/srid/haskell-flake)) + GHC 9
 - VSCode + [HLS](https://github.com/haskell/haskell-language-server)
-- [fourmolu](https://github.com/fourmolu/fourmolu) autoformatting 
+- [fourmolu](https://github.com/fourmolu/fourmolu) autoformatting
 - [Relude](https://github.com/kowainik/relude#relude) as Prelude.
   - `.hlint.yaml` is [from relude](https://github.com/kowainik/relude/blob/main/.hlint.yaml)
 
@@ -15,11 +15,11 @@ This repository is a Haskell project template that is optimized for a fully repr
 First-time setup:
 
 - [Install Nix](https://nixos.org/download.html) (>= 2.8) & [enable Flakes](https://nixos.wiki/wiki/Flakes)
-- Run `nix develop -c haskell-language-server` to sanity check your environment 
+- Run `nix develop -c haskell-language-server` to sanity check your environment
 - [Open as single-folder workspace](https://code.visualstudio.com/docs/editor/workspaces#_singlefolder-workspaces) in Visual Studio Code
-    - When prompted by VSCode, install the [workspace recommended](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions) extensions
-    - <kbd>Ctrl+Shift+P</kbd> to run command "Nix-Env: Select Environment" and then select `shell.nix`. 
-        - The extension will ask you to reload VSCode at the end. Do it.
+  - When prompted by VSCode, install the [workspace recommended](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions) extensions
+  - <kbd>Ctrl+Shift+P</kbd> to run command "Nix-Env: Select Environment" and then select `shell.nix`.
+    - The extension will ask you to reload VSCode at the end. Do it.
 
 To run the program with auto-recompile:
 

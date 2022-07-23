@@ -2,6 +2,48 @@
   "editor.formatOnType": true,
   "editor.formatOnSave": true,
   "nixEnvSelector.nixFile": "${workspaceRoot}/shell.nix",
-  "haskell.formattingProvider": "fourmolu",
-  "haskell.manageHLS": "PATH"
+  "haskell.manageHLS": "PATH",
+  "customLocalFormatters.formatters": [
+    {
+      "command": "treefmt -q --stdin ${file}",
+      "languages": [
+        "haskell",
+        "cabal",
+        "nix",
+        "json",
+        "jsonc",
+        "toml",
+        "markdown"
+      ]
+    }
+  ],
+  "[haskell]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "[cabal]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "[nix]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "dprint.json"
+      ],
+      "url": "https://dprint.dev/schemas/v0.json"
+    }
+  ]
 }
