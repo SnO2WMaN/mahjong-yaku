@@ -1,7 +1,5 @@
-{-# LANGUAGE TypeApplications #-}
-
+import ElementSpec
 import Test.Tasty (defaultMain)
-import TileSpec
 
 main :: IO ()
-main = defaultMain TileSpec.tests
+main = defaultMain ElementSpec.tests
