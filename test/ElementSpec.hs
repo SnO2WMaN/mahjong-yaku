@@ -228,8 +228,24 @@ testExtractTriple :: TestTree
 testExtractTriple =
   testGroup
     "刻子の抽出"
-    [ testCase "3個の牌" $
-        assertEqual "可能性" [MkExElem {exElement = [C1, C1, C1], exRest = []}] (extractTriple [C1, C1, C1] C1)
-    , testCase "4個の牌" $
-        assertEqual "可能性" [MkExElem {exElement = [C1, C1, C1], exRest = [C2]}] (extractTriple [C1, C1, C1, C2] C1)
+    [ testGroup
+        "最も単純なケース"
+        [ testCase "1個の牌は必ず成立しない" $
+            assertEqual "可能性" [] (extractTriple [C1] C1)
+        , testCase "2個の牌では必ず成立しない" $
+            assertEqual "可能性" [] (extractTriple [C1, C1] C1)
+        , testCase "3個の牌" $
+            do
+              let ps = extractTriple [C1, C1, C1] C1
+              assertEqual "可能性は1つ" 1 (length ps)
+              assertBool "可能性(1)" $ (MkExElem {exElement = [C1, C1, C1], exRest = []}) `elem` ps
+        , testCase "4個の牌" $
+            do
+              let ps = extractTriple [C1, C1, C1, C1] C1
+              assertEqual "可能性は2つ" 2 (length ps)
+              assertBool "可能性(1)" $ (MkExElem {exElement = [C1, C1, C1], exRest = [C1]}) `elem` ps
+              assertBool "可能性(2)" $ (MkExElem {exElement = [C1, C1, C1, C1], exRest = []}) `elem` ps
+        ]
+    , testCase "3個の牌で成立しないケース(1)" $
+        assertEqual "可能性" [] (extractTriple [C1, C2, C3] C1)
     ]

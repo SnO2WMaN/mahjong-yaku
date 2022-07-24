@@ -56,8 +56,13 @@ extractRunForAll rs =
   nub (concatMap (extractRun rs) [C1, C2, C3, C4, C5, C6, C7, C8, C9, D1, D2, D3, D4, D5, D6, D7, D8, D9, B1, B2, B3, B4, B5, B6, B7, B8, B9])
 
 extractTriple :: [TileType] -> TileType -> [ExtractedElement]
-extractTriple ts t =
-  [MkExElem {exElement = [t, t, t], exRest = deleteElement t t t ts} | t `elem` ts && includeElement t t t ts]
+extractTriple ts t = case length (filter (\t' -> t' == t) ts) of
+  4 ->
+    [ MkExElem {exElement = [t, t, t, t], exRest = delete t $ delete t $ delete t $ delete t ts}
+    , MkExElem {exElement = [t, t, t], exRest = delete t $ delete t $ delete t ts}
+    ]
+  3 -> [MkExElem {exElement = [t, t, t], exRest = delete t $ delete t $ delete t ts}]
+  _ -> []
 
 extractTripleForAll :: [TileType] -> [ExtractedElement]
 extractTripleForAll ts =
