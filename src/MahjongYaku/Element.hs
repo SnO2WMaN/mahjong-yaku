@@ -8,8 +8,9 @@ module MahjongYaku.Element where
 import Data.List (delete, nub)
 import GHC.Enum (Bounded)
 import MahjongYaku.Tile (TileType (..))
-import Relude (catMaybes, group, sort)
+import Relude (IsList (fromList), catMaybes, group, head, last, sort)
 import Relude.Extra (safeToEnum)
+import Prelude hiding (head, last)
 
 data ExtractedElement = MkExElem {exElement :: [TileType], exRest :: [TileType]} deriving (Eq, Show)
 
@@ -77,3 +78,18 @@ disassembly ts =
     concatMap disassemblyOnce $
       concatMap disassemblyOnce $
         disassemblyOnce (MkPosibility {posElements = [], posRest = ts})
+
+data Yaku = Yaku {yakuElements :: [[TileType]], yakuHead :: [TileType]} deriving (Eq, Show)
+
+isCompleted :: [TileType] -> [Yaku]
+isCompleted ts =
+  map
+    (\pos -> Yaku {yakuElements = posElements pos, yakuHead = posRest pos})
+    ( filter
+        ( \pos ->
+            let elements = posElements pos
+                rest = posRest pos
+             in length elements == 4 && length rest == 2 && head (fromList rest) == last (fromList rest)
+        )
+        (disassembly ts)
+    )
