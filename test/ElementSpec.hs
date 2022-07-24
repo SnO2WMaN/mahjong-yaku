@@ -223,3 +223,13 @@ testExtractAllRun =
           assertBool "可能性(2)" $ (MkExElem {exElement = [B6, B7, B8], exRest = [B5, B7, B9]}) `elem` ps
           assertBool "可能性(3)" $ (MkExElem {exElement = [B7, B8, B9], exRest = [B5, B6, B7]}) `elem` ps
     ]
+
+testExtractTriple :: TestTree
+testExtractTriple =
+  testGroup
+    "刻子の抽出"
+    [ testCase "3個の牌" $
+        assertEqual "可能性" [MkExElem {exElement = [C1, C1, C1], exRest = []}] (extractTriple [C1, C1, C1] C1)
+    , testCase "4個の牌" $
+        assertEqual "可能性" [MkExElem {exElement = [C1, C1, C1], exRest = [C2]}] (extractTriple [C1, C1, C1, C2] C1)
+    ]
