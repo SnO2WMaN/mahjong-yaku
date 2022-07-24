@@ -66,13 +66,20 @@ extractTriple ts t = case length (filter (\t' -> t' == t) ts) of
 
 extractTripleForAll :: [TileType] -> [ExtractedElement]
 extractTripleForAll ts =
-  nub (concatMap (extractRun ts) [C1, C2, C3, C4, C5, C6, C7, C8, C9, D1, D2, D3, D4, D5, D6, D7, D8, D9, B1, B2, B3, B4, B5, B6, B7, B8, B9, East, South, West, North, White, Green, Red])
+  nub (concatMap (extractTriple ts) [C1, C2, C3, C4, C5, C6, C7, C8, C9, D1, D2, D3, D4, D5, D6, D7, D8, D9, B1, B2, B3, B4, B5, B6, B7, B8, B9, East, South, West, North, White, Green, Red])
 
 data Posibility = MkPosibility {posElements :: [[TileType]], posRest :: [TileType]} deriving (Eq, Show)
 
-startR :: Posibility -> [Posibility]
-startR pos = map (\ex -> MkPosibility {posElements = posElements pos ++ [exElement ex], posRest = exRest ex}) (extractRunForAll (posRest pos))
+disassemblyOnce :: Posibility -> [Posibility]
+disassemblyOnce pos =
+  map
+    (\ex -> MkPosibility {posElements = posElements pos ++ [exElement ex], posRest = exRest ex})
+    (extractRunForAll (posRest pos) ++ extractTripleForAll (posRest pos))
 
-start :: [TileType] -> [Posibility]
-start ts =
-  concatMap startR $ concatMap startR $ concatMap startR $ startR MkPosibility {posElements = [], posRest = ts}
+-- disassembly [C1,C1,C1,C2,C3,C4,C5,C5,C6,C7,C8,C9,C9,C9]
+disassembly :: [TileType] -> [Posibility]
+disassembly ts =
+  concatMap disassemblyOnce $
+    concatMap disassemblyOnce $
+      concatMap disassemblyOnce $
+        disassemblyOnce (MkPosibility {posElements = [], posRest = ts})
