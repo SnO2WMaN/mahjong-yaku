@@ -47,17 +47,17 @@ testExtractRun =
         [ testCase "3個の牌(1)" $
             do
               let ps = extractRun [C1, C2, C3] C1
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [], element = [C1, C2, C3]}) `elem` ps
         , testCase "6個の牌(1)" $
             do
               let ps = extractRun [C1, C2, C3, C4, C5, C6] C1
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [C4, C5, C6], element = [C1, C2, C3]}) `elem` ps
         , testCase "6個の牌(2)" $
             do
               let ps = extractRun [C1, C2, C3, C1, C2, C3] C1
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [C1, C2, C3], element = [C1, C2, C3]}) `elem` ps
         ]
     , testGroup
@@ -65,12 +65,12 @@ testExtractRun =
         [ testCase "3個の牌(1)" $
             do
               let ps = extractRun [C1, C2, C3] C2
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [], element = [C1, C2, C3]}) `elem` ps
         , testCase "6個の牌(1)" $
             do
               let ps = extractRun [C1, C2, C3, C4, C5, C6] C2
-              assertEqual "可能性は2つ" (length ps) 2
+              assertEqual "可能性は2つ" 2 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [C4, C5, C6], element = [C1, C2, C3]}) `elem` ps
               assertBool "可能性(2)" $ (Ext {rest = [C1, C5, C6], element = [C2, C3, C4]}) `elem` ps
         ]
@@ -79,12 +79,12 @@ testExtractRun =
         [ testCase "3個の牌(1)" $
             do
               let ps = extractRun [C1, C2, C3] C3
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [], element = [C1, C2, C3]}) `elem` ps
         , testCase "6個の牌(1)" $
             do
               let ps = extractRun [C1, C2, C3, C4, C5, C6] C3
-              assertEqual "可能性は3つ" (length ps) 3
+              assertEqual "可能性は3つ" 3 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [C4, C5, C6], element = [C1, C2, C3]}) `elem` ps
               assertBool "可能性(2)" $ (Ext {rest = [C1, C5, C6], element = [C2, C3, C4]}) `elem` ps
               assertBool "可能性(3)" $ (Ext {rest = [C1, C2, C6], element = [C3, C4, C5]}) `elem` ps
@@ -94,12 +94,12 @@ testExtractRun =
         [ testCase "3個の牌(1)" $
             do
               let ps = extractRun [C7, C8, C9] C8
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [], element = [C7, C8, C9]}) `elem` ps
         , testCase "6個の牌(1)" $
             do
               let ps = extractRun [C4, C5, C6, C7, C8, C9] C8
-              assertEqual "可能性は2つ" (length ps) 2
+              assertEqual "可能性は2つ" 2 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [C4, C5, C6], element = [C7, C8, C9]}) `elem` ps
               assertBool "可能性(2)" $ (Ext {rest = [C4, C5, C9], element = [C6, C7, C8]}) `elem` ps
         ]
@@ -109,17 +109,17 @@ testExtractRun =
             "3個の牌(1)"
             $ do
               let ps = extractRun [C7, C8, C9] C9
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [], element = [C7, C8, C9]}) `elem` ps
         , testCase "6個の牌(1)" $
             do
               let ps = extractRun [C4, C5, C6, C7, C8, C9] C9
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [C4, C5, C6], element = [C7, C8, C9]}) `elem` ps
         , testCase "6個の牌(2)" $
             do
               let ps = extractRun [C7, C8, C9, C7, C8, C9] C9
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [C7, C8, C9], element = [C7, C8, C9]}) `elem` ps
         ]
     , testGroup
@@ -127,17 +127,17 @@ testExtractRun =
         [ testCase "3個の牌(1)" $
             do
               let ps = extractRun [D1, D2, D3] D1
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [], element = [D1, D2, D3]}) `elem` ps
         , testCase "6個の牌(1)" $
             do
               let ps = extractRun [D1, D2, D3, D4, D5, D6] D1
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [D4, D5, D6], element = [D1, D2, D3]}) `elem` ps
         , testCase "6個の牌(2)" $
             do
               let ps = extractRun [D1, D2, D3, D1, D2, D3] D1
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [D1, D2, D3], element = [D1, D2, D3]}) `elem` ps
         ]
     , testGroup
@@ -145,17 +145,17 @@ testExtractRun =
         [ testCase "3個の牌(1)" $
             do
               let ps = extractRun [D7, D8, D9] D9
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [], element = [D7, D8, D9]}) `elem` ps
         , testCase "6個の牌(1)" $
             do
               let ps = extractRun [D4, D5, D6, D7, D8, D9] D9
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [D4, D5, D6], element = [D7, D8, D9]}) `elem` ps
         , testCase "6個の牌(2)" $
             do
               let ps = extractRun [D7, D8, D9, D7, D8, D9] D9
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [D7, D8, D9], element = [D7, D8, D9]}) `elem` ps
         ]
     , testGroup
@@ -163,17 +163,17 @@ testExtractRun =
         [ testCase "3個の牌(1)" $
             do
               let ps = extractRun [B1, B2, B3] B1
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [], element = [B1, B2, B3]}) `elem` ps
         , testCase "6個の牌(1)" $
             do
               let ps = extractRun [B1, B2, B3, B4, B5, B6] B1
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [B4, B5, B6], element = [B1, B2, B3]}) `elem` ps
         , testCase "6個の牌(2)" $
             do
               let ps = extractRun [B1, B2, B3, B1, B2, B3] B1
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [B1, B2, B3], element = [B1, B2, B3]}) `elem` ps
         ]
     , testGroup
@@ -181,17 +181,17 @@ testExtractRun =
         [ testCase "3個の牌(1)" $
             do
               let ps = extractRun [B7, B8, B9] B9
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [], element = [B7, B8, B9]}) `elem` ps
         , testCase "6個の牌(1)" $
             do
               let ps = extractRun [B4, B5, B6, B7, B8, B9] B9
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [B4, B5, B6], element = [B7, B8, B9]}) `elem` ps
         , testCase "6個の牌(2)" $
             do
               let ps = extractRun [B7, B8, B9, B7, B8, B9] B9
-              assertEqual "可能性は1つ" (length ps) 1
+              assertEqual "可能性は1つ" 1 (length ps)
               assertBool "可能性(1)" $ (Ext {rest = [B7, B8, B9], element = [B7, B8, B9]}) `elem` ps
         ]
     ]
