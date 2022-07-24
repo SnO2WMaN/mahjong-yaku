@@ -1,6 +1,6 @@
 module ElementSpec (tests) where
 
-import MahjongYaku.Element (ExtractedElement (..), extractRun, extractRunForAll)
+import MahjongYaku.Element (ExtractedElement (..), extractRun, extractRunForAll, extractTriple)
 import MahjongYaku.Tile (TileType (..))
 import Test.Tasty (TestTree, testGroup)
 import Test.Tasty.HUnit (assertBool, assertEqual, testCase, (@?=))
@@ -10,14 +10,15 @@ tests :: TestTree
 tests =
   testGroup
     "牌についてのテスト"
-    [ testElementractRun
-    , testElementractAllRun
+    [ testExtractRun
+    , testExtractAllRun
+    , testExtractTriple
     ]
 
-testElementractRun :: TestTree
-testElementractRun =
+testExtractRun :: TestTree
+testExtractRun =
   testGroup
-    "刻子の抽出"
+    "順子の抽出"
     [ testGroup
         "字牌の検定はしない"
         [ testCase "東" $
@@ -38,7 +39,7 @@ testElementractRun =
     , testCase "検定する牌が存在しない" $
         assertBool "可能性は存在しない" $ null (extractRun [C1, C2, C3] C4)
     , testGroup
-        "刻子が存在しない"
+        "順子が存在しない"
         [ testCase "3個の牌(1)" $ assertBool "可能性は存在しない" $ null (extractRun [C1, C2, C4] C1)
         ]
     , testGroup
@@ -210,9 +211,10 @@ testElementractRun =
         ]
     ]
 
-testElementractAllRun =
+testExtractAllRun :: TestTree
+testExtractAllRun =
   testGroup
-    "刻子をすべての数牌で検証する"
+    "順子をすべての数牌で検証する"
     [ testCase "(1)" $
         do
           let ps = extractRunForAll [B5, B6, B7, B7, B8, B9]
